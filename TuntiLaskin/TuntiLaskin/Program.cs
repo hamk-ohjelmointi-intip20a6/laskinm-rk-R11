@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -10,18 +10,30 @@ namespace TuntiLaskin
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            String[,] TyoLista = new string[100, 100];
+
+            TyoLista[0, 0] = "pekka";
+            TyoLista[0, 1] = "vittu";
+            TyoLista[1, 0] = "matti";
+            TyoLista[1, 1] = "joo";
+            TyoLista[2, 0] = "";
+
+            System.Console.WriteLine(TyoLista[0, 0]);
+            System.Console.WriteLine(TyoLista[0, 1]);
+            Console.WriteLine("Hello");
+            string Salasana = "";
             //Käyttäjän valinta
             while (true)
             {
                 //kysytään kuka käyttää
                 Console.WriteLine("Anna käyttäjänimi");
                 string Kayttaja = Console.ReadLine();
+
                 int Valinta; //admin sekä työntekijän valikko valinta muuttuja
                 if (Kayttaja == "Admin")
                 {
                     Console.WriteLine("Anna salasana");
-                    string Salasana = "";
+
                     ConsoleKeyInfo info = Console.ReadKey(true);
                     //jos ei ole enter
                     while (info.Key != ConsoleKey.Enter)
@@ -81,6 +93,12 @@ namespace TuntiLaskin
                                 else if (Valinta == 3)
                                 {
                                     //Lisätään työntekijä listaan
+                                    Console.WriteLine("Anna etunimi");
+                                    string etunimi = Console.ReadLine();
+                                    //etunimi FirstCharToUpper;
+                                    Console.WriteLine("Anna sukunimi");
+                                    Console.WriteLine("tuntipalkka (brutto)");
+                                    Console.WriteLine("Veroprosentti");
                                 }
                                 else if (Valinta == 0)
                                 {
@@ -96,37 +114,88 @@ namespace TuntiLaskin
                     }
                     else { Console.WriteLine("Väärä Salasana"); }
                 }
-                else
+                for (int h = 0; h < 100; h++)
                 {
-                    while (true)
+                    if (Kayttaja == TyoLista[h, 0])
                     {
-                        //työntekijän valikko
-                        Console.WriteLine("Hei " + Kayttaja + "!");
-                        Console.WriteLine("Paina 1 Lisätäksesi tunteja");
-                        Console.WriteLine("Paina 2 tarkastella tietojasi");
-                        Console.WriteLine("Paina 0 kirjautuaksesi ulos");
-                        string valinta = Console.ReadLine();//käyttäjän valinta
-                        //Yritetään muuttaa numeroksi
-                        if (int.TryParse(valinta, out Valinta))
+                        Console.WriteLine("Anna salasana");
+
+                        ConsoleKeyInfo info = Console.ReadKey(true);
+                        //jos ei ole enter
+                        while (info.Key != ConsoleKey.Enter)
                         {
-                            if (Valinta == 1)
+                            //jos ei ole backspace
+                            if (info.Key != ConsoleKey.Backspace)
                             {
-                                //omien tuntien lisääminen
+                                //kirjoittaa tähden konsoliin
+                                Console.Write("*");
+                                //lisää painetun merkin annetun salasanan perään
+                                Salasana += info.KeyChar;
                             }
-                            else if (Valinta == 2)
+                            //jos on backspace
+                            else if (info.Key == ConsoleKey.Backspace)
                             {
-                                //omien tietojen tarkastelu
+                                //onko annettu salasana tyhjä
+                                if (!string.IsNullOrEmpty(Salasana))
+                                {
+                                    //poistaa yhden merkin annetun salasanan lopusta
+                                    Salasana = Salasana.Substring(0, Salasana.Length - 1);
+                                    //hakee cursorin sijainnin
+                                    int pos = Console.CursorLeft;
+                                    //Siirtää cursoria yhden merkin verran vasemmalle
+                                    Console.SetCursorPosition(pos - 1, Console.CursorTop);
+                                    //vaihtaa tähden tyhjään
+                                    Console.Write(" ");
+                                    //siirtää cursorin taas yhden vasemmalle
+                                    Console.SetCursorPosition(pos - 1, Console.CursorTop);
+                                }
                             }
-                            else if (Valinta == 0)
+                            info = Console.ReadKey(true);
+                        }
+                        Console.WriteLine();
+                        if (Salasana == TyoLista[h, 1])
+                        {
+                            while (true)
                             {
-                                //paluu käyttäjän valintaan
-                                break;
-                            }
-                            else
-                            {
-                                Console.WriteLine("Anna luku väliltä 0 - 2");
+                                //työntekijän valikko
+                                Console.WriteLine("Hei " + Kayttaja + "!");
+                                Console.WriteLine("Paina 1 Lisätäksesi tunteja");
+                                Console.WriteLine("Paina 2 tarkastella tietojasi");
+                                Console.WriteLine("Paina 0 kirjautuaksesi ulos");
+                                string valinta = Console.ReadLine();//käyttäjän valinta
+                                //Yritetään muuttaa numeroksi
+                                if (int.TryParse(valinta, out Valinta))
+                                {
+                                    if (Valinta == 1)
+                                    {
+                                        //omien tuntien lisääminen
+                                    }
+                                    else if (Valinta == 2)
+                                    {
+                                        //omien tietojen tarkastelu
+                                    }
+                                    else if (Valinta == 0)
+                                    {
+                                        //paluu käyttäjän valintaan
+                                        break;
+                                    }
+
+                                }
+                                else
+                                {
+                                    Console.WriteLine("Anna luku väliltä 0 - 2");
+                                }
                             }
                         }
+                        else 
+                        { 
+                            Console.WriteLine("Väärä salasana"); 
+                        }
+                        break;
+                    }
+                    else 
+                    { 
+                        //Console.WriteLine("käyttäjää ei löydy"); 
                     }
                 }
             }
