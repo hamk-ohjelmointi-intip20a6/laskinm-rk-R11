@@ -195,7 +195,43 @@ namespace TuntiLaskin
                                 {
                                     if (Valinta == 1)
                                     {
-                                        //omien tuntien lisääminen
+                                        bool tyotunnitOikein = true;
+                                        //Palauttaa luuppiin jos tyotunnitOikein = true
+                                        while (tyotunnitOikein == true)
+                                        {
+                                            Console.Write("Syötä päivän työtuntisi: ");
+                                            string tyotunnit = Console.ReadLine();
+                                            double tyotunnitDouble;
+
+                                            //yrittää muuntaa doubleksi
+                                            if (double.TryParse(tyotunnit, out tyotunnitDouble))
+                                            {
+                                                Console.Write("Vahvista tuntimäärä " + tyotunnit + " kirjoittamalla se uudestaan: ");
+                                                double tyotunnitTarkastus;
+                                                //muuntaa syötettävän takistusluvun doubleksi vertailua varten
+                                                double.TryParse(Console.ReadLine(), out tyotunnitTarkastus);
+                                                //jos tarkistus on väärin, käyttäjä palaa ylemmän tason while-luuppiin ja kirjaa tunnit uudelleen
+                                                if (tyotunnitDouble != tyotunnitTarkastus)
+                                                {
+                                                    Console.WriteLine("Vahvistus on väärin, syötä työtuntisi uudestaan.");
+                                                }
+                                                else
+                                                {
+                                                    //Hakee työlistasta työtunnit, muuttaa ne doubleksi
+                                                    double tyotunnitSumma = Convert.ToDouble(TyoLista[h, 2]);
+                                                    //Laskee haetut työtunnit ja lisätyt työtunnit summaan
+                                                    tyotunnitSumma = tyotunnitDouble + tyotunnitSumma;
+                                                    //Muuttaa lasketun summan stringiksi, listaan säilyttämistä varten, Tallentaa listaan.
+                                                    TyoLista[h, 2] = Convert.ToString(tyotunnitSumma);
+                                                    Console.WriteLine("Työtuntiesi asettaminen onnistui!");
+                                                    tyotunnitOikein = false;
+                                                }
+                                            }
+                                            else
+                                            {
+                                                Console.WriteLine("Syötteeksi hyväksytään vain numerot ja pilkut.");
+                                            }
+                                        }
                                     }
                                     else if (Valinta == 2)
                                     {
