@@ -12,12 +12,33 @@ namespace TuntiLaskin
         {
 
             String[, ] TyoLista = new string[100, 100];
-            //TyoLista[Käyttänimi, Salasana, Työtunnit, Tuntipalkka(brutto), Ikä, Veroprosentti, Työeläke,]
-            TyoLista[0, 0] = "pekka";
-            TyoLista[0, 1] = "vittu";
+            //TyoLista[Käyttänimi, Salasana, Työtunnit, Tuntipalkka(brutto), Ikä, Veroprosentti, Työeläke, Työttömyysvakuutusmaksu]
+            TyoLista[0, 0] = "pekka"; //Käyttänimi
+            TyoLista[0, 1] = "vittu"; //Salasana
+            TyoLista[0, 2] = "8";     //Työtunnit
+            TyoLista[0, 3] = "12";    //Tuntipalkka(brutto)
+            TyoLista[0, 4] = "68";    //Ikä
+            TyoLista[0, 5] = "18";    //Veroprosentti
+            TyoLista[0, 6] = "8,65";  //Työeläke
+            TyoLista[0, 7] = "1,4";   //Työttömyysvakuutusmaksu
+
             TyoLista[1, 0] = "matti";
             TyoLista[1, 1] = "joo";
-            TyoLista[2, 0] = "";
+            TyoLista[1, 2] = "10";
+            TyoLista[1, 3] = "15";
+            TyoLista[1, 4] = "52";
+            TyoLista[1, 5] = "26";
+            TyoLista[1, 6] = "8,65";
+            TyoLista[1, 7] = "0,5";
+
+            TyoLista[2, 0] = "maija";
+            TyoLista[2, 1] = "jep";
+            TyoLista[2, 2] = "25";
+            TyoLista[2, 3] = "14";
+            TyoLista[2, 4] = "38";
+            TyoLista[2, 5] = "12";
+            TyoLista[2, 6] = "8,65";
+            TyoLista[2, 7] = "1,4";
 
             System.Console.WriteLine(TyoLista[0, 0]);
             System.Console.WriteLine(TyoLista[0, 1]);
@@ -175,7 +196,7 @@ namespace TuntiLaskin
                                 //työntekijän valikko
                                 Console.WriteLine("Hei " + Kayttaja + "!");
                                 Console.WriteLine("Paina 1 Lisätäksesi tunteja");
-                                Console.WriteLine("Paina 2 tarkastella tietojasi");
+                                Console.WriteLine("Paina 2 tarkastellaksesi tietojasi");
                                 Console.WriteLine("Paina 0 kirjautuaksesi ulos");
                                 string valinta = Console.ReadLine();//käyttäjän valinta
                                 //Yritetään muuttaa numeroksi
@@ -187,7 +208,28 @@ namespace TuntiLaskin
                                     }
                                     else if (Valinta == 2)
                                     {
+                                        var tuntipalkka = TyoLista[0, 3];
+                                        var veroprosentti = TyoLista[h, 5];
+                                        var tehdytTunnit = TyoLista[h, 2];
+                                        
+     
                                         //omien tietojen tarkastelu
+                                        //pitää etsiä lista ja printtaa se ulos
+                                        Console.WriteLine("Tässä on tiedot.");
+                                        Console.WriteLine("---------------------------");
+                                        Console.Write("Käyttäjän nimi: ");
+                                        Console.Write(Kayttaja);
+                                        Console.WriteLine();
+                                        Console.Write("Tuntipalkka: ");
+                                        Console.Write(tuntipalkka + "e");
+                                        Console.WriteLine();
+                                        Console.Write("Veroprosentti: ");
+                                        Console.Write(veroprosentti + "%");
+                                        Console.WriteLine();
+                                        Console.Write("Tehdyt tunnit: ");
+                                        Console.WriteLine(tehdytTunnit + "h");
+                                        Console.WriteLine("---------------------------");
+
                                     }
                                     else if (Valinta == 0)
                                     {
