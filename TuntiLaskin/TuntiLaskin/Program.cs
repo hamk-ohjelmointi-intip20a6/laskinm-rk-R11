@@ -127,7 +127,7 @@ namespace TuntiLaskin
                                         }
                                         TyoLista[i, 0] = kauttajatunnus;
                                         TyoLista[i, 1] = KayttajaSalasana;
-                                        Console.WriteLine(i + "nimi" + TyoLista[i, 0] + "salasana" + TyoLista[i, 1]);
+                                        //Console.WriteLine(i + "nimi" + TyoLista[i, 0] + "salasana" + TyoLista[i, 1]);
                                     }
                                     else if (Valinta == 0)
                                     {
