@@ -1,0 +1,7 @@
+C:\Users\Opiskelu\source\repos\C#\laskinm-rk-R11\TuntiLaskin\TuntiLaskin\bin\Debug\TuntiLaskin.exe.config
+C:\Users\Opiskelu\source\repos\C#\laskinm-rk-R11\TuntiLaskin\TuntiLaskin\bin\Debug\TuntiLaskin.exe
+C:\Users\Opiskelu\source\repos\C#\laskinm-rk-R11\TuntiLaskin\TuntiLaskin\bin\Debug\TuntiLaskin.pdb
+C:\Users\Opiskelu\source\repos\C#\laskinm-rk-R11\TuntiLaskin\TuntiLaskin\obj\Debug\TuntiLaskin.csprojAssemblyReference.cache
+C:\Users\Opiskelu\source\repos\C#\laskinm-rk-R11\TuntiLaskin\TuntiLaskin\obj\Debug\TuntiLaskin.csproj.CoreCompileInputs.cache
+C:\Users\Opiskelu\source\repos\C#\laskinm-rk-R11\TuntiLaskin\TuntiLaskin\obj\Debug\TuntiLaskin.exe
+C:\Users\Opiskelu\source\repos\C#\laskinm-rk-R11\TuntiLaskin\TuntiLaskin\obj\Debug\TuntiLaskin.pdb
