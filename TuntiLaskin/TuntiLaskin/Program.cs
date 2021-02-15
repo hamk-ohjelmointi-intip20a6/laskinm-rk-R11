@@ -10,8 +10,9 @@ namespace TuntiLaskin
     {
         static void Main(string[] args)
         {
-            String[,] TyoLista = new string[100, 100];
 
+            String[, ] TyoLista = new string[100, 100];
+            //TyoLista[Käyttänimi, Salasana, Työtunnit, Tuntipalkka(brutto), Ikä, Veroprosentti, Työeläke,]
             TyoLista[0, 0] = "pekka";
             TyoLista[0, 1] = "vittu";
             TyoLista[1, 0] = "matti";
@@ -20,13 +21,14 @@ namespace TuntiLaskin
 
             System.Console.WriteLine(TyoLista[0, 0]);
             System.Console.WriteLine(TyoLista[0, 1]);
-            Console.WriteLine("Hello");
+            Console.WriteLine("Hello world");
             string Salasana = "";
             //Käyttäjän valinta
             while (true)
             {
                 //kysytään kuka käyttää
                 Console.WriteLine("Anna käyttäjänimi");
+                Console.WriteLine(TyoLista.GetLength(0));
                 string Kayttaja = Console.ReadLine();
 
                 int Valinta; //admin sekä työntekijän valikko valinta muuttuja
@@ -93,12 +95,25 @@ namespace TuntiLaskin
                                 else if (Valinta == 3)
                                 {
                                     //Lisätään työntekijä listaan
-                                    Console.WriteLine("Anna etunimi");
-                                    string etunimi = Console.ReadLine();
-                                    //etunimi FirstCharToUpper;
-                                    Console.WriteLine("Anna sukunimi");
-                                    Console.WriteLine("tuntipalkka (brutto)");
-                                    Console.WriteLine("Veroprosentti");
+                                    Console.Write("Syötä etunimesi: ");
+                                    string pieni_etunimi = (Console.ReadLine()).ToLower();
+                                    Console.Write("Syötä sukunimesi: ");
+                                    string pieni_sukunimi = (Console.ReadLine()).ToLower();
+                                    string etunimi = Char.ToUpper(pieni_etunimi[0]) + pieni_etunimi.Substring(1);
+                                    string sukunimi = Char.ToUpper(pieni_sukunimi[0]) + pieni_sukunimi.Substring(1);
+                                    string kauttajatunnus = sukunimi + etunimi;
+                                    Console.WriteLine(kauttajatunnus);
+                                    Console.ReadKey();
+                                    Console.WriteLine("Syötä salasanasi: ");
+                                    string KayttajaSalasana = Console.ReadLine();
+                                    int i;
+                                    for (i = 0; i < TyoLista.GetLength(0); i++)
+                                    {
+
+                                    }
+                                    TyoLista[i, 0] = kauttajatunnus;
+                                    TyoLista[i, 1] = KayttajaSalasana;
+                                    Console.WriteLine(i + "nimi" + TyoLista[i, 0] + "salasana" + TyoLista[i, 1]);
                                 }
                                 else if (Valinta == 0)
                                 {
