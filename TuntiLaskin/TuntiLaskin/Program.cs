@@ -12,7 +12,8 @@ namespace TuntiLaskin
         {
 
             String[, ] TyoLista = new string[100, 100];
-            //TyoLista[Käyttänimi, Salasana, Työtunnit, Tuntipalkka(brutto), Ikä, Veroprosentti, Työeläke, Työttömyysvakuutusmaksu]
+            //TyoLista[Käyttänimi, Salasana, Työtunnit, Tuntipalkka(brutto),
+            //Ikä, Veroprosentti, Työeläke, Työttömyysvakuutusmaksu]
             TyoLista[0, 0] = "pekka"; //Käyttänimi
             TyoLista[0, 1] = "vittu"; //Salasana
             TyoLista[0, 2] = "8";     //Työtunnit
@@ -263,7 +264,7 @@ namespace TuntiLaskin
      
                                         //omien tietojen tarkastelu
                                         //pitää etsiä lista ja printtaa se ulos
-                                        Console.WriteLine("Tässä on tiedot.");
+                                        Console.WriteLine("Käyttäjän tiedot.");
                                         Console.WriteLine("---------------------------");
                                         Console.Write("Käyttäjän nimi: ");
                                         Console.Write(Kayttaja);
@@ -306,6 +307,7 @@ namespace TuntiLaskin
                     }
                 }
             }
+
         }
     }
 }
