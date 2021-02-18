@@ -21,6 +21,7 @@ namespace TuntiLaskin
             TyoLista[0, 5] = "18";    //Veroprosentti
             TyoLista[0, 6] = "8,65";  //Työeläke
             TyoLista[0, 7] = "1,4";   //Työttömyysvakuutusmaksu
+            TyoLista[0, 8] = "10";    //Tuntipalkka(Netto)
 
             TyoLista[1, 0] = "matti";
             TyoLista[1, 1] = "joo";
@@ -30,6 +31,7 @@ namespace TuntiLaskin
             TyoLista[1, 5] = "26";
             TyoLista[1, 6] = "8,65";
             TyoLista[1, 7] = "0,5";
+            TyoLista[1, 8] = "11";
 
             TyoLista[2, 0] = "maija";
             TyoLista[2, 1] = "jep";
@@ -39,6 +41,7 @@ namespace TuntiLaskin
             TyoLista[2, 5] = "12";
             TyoLista[2, 6] = "8,65";
             TyoLista[2, 7] = "1,4";
+            TyoLista[2, 8] = "13";
 
 
             Console.WriteLine("Hello world");
@@ -55,7 +58,6 @@ namespace TuntiLaskin
                     if (Kayttaja == "Admin")
                     {
                         Console.WriteLine("Anna salasana");
-
                         ConsoleKeyInfo info = Console.ReadKey(true);
                         //jos ei ole enter
                         while (info.Key != ConsoleKey.Enter)
@@ -152,6 +154,7 @@ namespace TuntiLaskin
                                     }
                                     else if (Valinta == 0)
                                     {
+                                        Salasana = null;
                                         //paluu käyttäjän valintaan
                                         break;
                                     }
@@ -162,12 +165,16 @@ namespace TuntiLaskin
                                 }
                             }
                         }
-                        else { Console.WriteLine("Väärä Salasana"); }
+                        else
+                        {
+                            Console.WriteLine("Väärä salasana");
+                            Salasana = null;
+                        }
+                        break;
                     }
                     else if (Kayttaja == TyoLista[h, 0])
                     {
                         Console.WriteLine("Anna salasana");
-
                         ConsoleKeyInfo info = Console.ReadKey(true);
                         //jos ei ole enter
                         while (info.Key != ConsoleKey.Enter)
@@ -208,7 +215,7 @@ namespace TuntiLaskin
                             {
                                 //työntekijän valikko
                                 Console.WriteLine("Paina 1 Lisätäksesi tunteja");
-                                Console.WriteLine("Paina 2 tarkastellaksesi tietojasi");
+                                Console.WriteLine("Paina 2 tarkastella tietojasi");
                                 Console.WriteLine("Paina 0 kirjautuaksesi ulos");
                                 string valinta = Console.ReadLine();//käyttäjän valinta
                                 //Yritetään muuttaa numeroksi
@@ -216,6 +223,7 @@ namespace TuntiLaskin
                                 {
                                     if (Valinta == 1)
                                     {
+                                        //omien tuntien lisääminen
                                         bool tyotunnitOikein = true;
                                         //Palauttaa luuppiin jos tyotunnitOikein = true
                                         while (tyotunnitOikein == true)
@@ -256,11 +264,12 @@ namespace TuntiLaskin
                                     }
                                     else if (Valinta == 2)
                                     {
+                                        //omien tietojen tarkastelu
                                         var tuntipalkka = TyoLista[0, 3];
                                         var veroprosentti = TyoLista[h, 5];
                                         var tehdytTunnit = TyoLista[h, 2];
-                                        
-     
+
+
                                         //omien tietojen tarkastelu
                                         //pitää etsiä lista ja printtaa se ulos
                                         Console.WriteLine("Tässä on tiedot.");
@@ -277,27 +286,25 @@ namespace TuntiLaskin
                                         Console.Write("Tehdyt tunnit: ");
                                         Console.WriteLine(tehdytTunnit + "h");
                                         Console.WriteLine("---------------------------");
-
                                     }
                                     else if (Valinta == 0)
                                     {
                                         //paluu käyttäjän valintaan
+                                        Salasana = null;
                                         break;
                                     }
-
                                 }
                                 else
                                 {
                                     Console.WriteLine("Anna luku väliltä 0 - 2");
                                 }
                             }
-                        }
+                        }  
                         else
                         {
                             Console.WriteLine("Väärä salasana");
                             break;
-                        }
-                        
+                        } 
                     }
                     else
                     {
