@@ -109,17 +109,18 @@ namespace TuntiLaskin
                                     if (Valinta == 1)
                                     {
                                         //Tarkastellaan työntekijöiden tietoja
-                                        
-                                        for (int i = 1; i < TyoLista.GetLength(0); i++)
+                                        int i;
+                                        for (i = 1; i < TyoLista.GetLength(0); i++)
                                         {
                                             if (TyoLista[i, 0] == null)
                                             {
+                                                i++;
                                                 break;
                                             }
-                                            for (int s = 0; s < i; s++)
-                                            {
-                                                Console.WriteLine(TyoLista[s, 0]);
-                                            }
+                                        }
+                                        for (int s = 0; s < i; s++)
+                                        {
+                                            Console.WriteLine(TyoLista[s, 0]);
                                         }
                                     }
                                     else if (Valinta == 2)
