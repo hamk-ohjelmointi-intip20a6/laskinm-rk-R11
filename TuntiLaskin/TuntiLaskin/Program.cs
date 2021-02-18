@@ -137,7 +137,6 @@ namespace TuntiLaskin
                                         string sukunimi = Char.ToUpper(pieni_sukunimi[0]) + pieni_sukunimi.Substring(1);
                                         string kauttajatunnus = sukunimi + etunimi;
                                         Console.WriteLine(kauttajatunnus);
-                                        Console.ReadKey();
                                         Console.WriteLine("Syötä salasanasi: ");
                                         string KayttajaSalasana = Console.ReadLine();
                                         int i;
