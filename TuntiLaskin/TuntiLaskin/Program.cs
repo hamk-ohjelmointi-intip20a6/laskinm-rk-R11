@@ -306,10 +306,6 @@ namespace TuntiLaskin
                         }
                         break;
                     }
-                    else
-                    {
-                        Console.WriteLine("käyttäjää ei löydy");
-                    }
                 }
             }
         }
