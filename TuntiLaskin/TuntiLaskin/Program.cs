@@ -303,13 +303,13 @@ namespace TuntiLaskin
                         else
                         {
                             Console.WriteLine("Väärä salasana");
-                            break;
-                        } 
+                            Salasana = null;
+                        }
+                        break;
                     }
                     else
                     {
                         Console.WriteLine("käyttäjää ei löydy");
-                        break;
                     }
                 }
             }
