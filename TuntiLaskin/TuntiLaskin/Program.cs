@@ -8,53 +8,45 @@ namespace TuntiLaskin
 {
     class Program
     {
-       
-        public static string SalasananSuojaus()
+       public static string SalasananSuojaus()
         {
             string Salasana = null;
             Console.WriteLine("Anna salasana");
             ConsoleKeyInfo info = Console.ReadKey(true);
             //jos ei ole enter
             while (info.Key != ConsoleKey.Enter)
-
             {
-                string Salasana = null;
-                Console.WriteLine("Anna salasana");
-                ConsoleKeyInfo info = Console.ReadKey(true);
-                //jos ei ole enter
-                while (info.Key != ConsoleKey.Enter)
+                //jos ei ole backspace
+                if (info.Key != ConsoleKey.Backspace)
                 {
-                    //jos ei ole backspace
-                    if (info.Key != ConsoleKey.Backspace)
-                    {
-                        //kirjoittaa tähden konsoliin
-                        Console.Write("*");
-                        //lisää painetun merkin annetun salasanan perään
-                        Salasana += info.KeyChar;
-                    }
-                    //jos on backspace
-                    else if (info.Key == ConsoleKey.Backspace)
-                    {
-                        //onko annettu salasana tyhjä
-                        if (!string.IsNullOrEmpty(Salasana))
-                        {
-                            //poistaa yhden merkin annetun salasanan lopusta
-                            Salasana = Salasana.Substring(0, Salasana.Length - 1);
-                            //hakee cursorin sijainnin
-                            int pos = Console.CursorLeft;
-                            //Siirtää cursoria yhden merkin verran vasemmalle
-                            Console.SetCursorPosition(pos - 1, Console.CursorTop);
-                            //vaihtaa tähden tyhjään
-                            Console.Write(" ");
-                            //siirtää cursorin taas yhden vasemmalle
-                            Console.SetCursorPosition(pos - 1, Console.CursorTop);
-                        }
-                    }
-                    info = Console.ReadKey(true);
+                    //kirjoittaa tähden konsoliin
+                    Console.Write("*");
+                    //lisää painetun merkin annetun salasanan perään
+                    Salasana += info.KeyChar;
                 }
-                Console.WriteLine();
-                return Salasana;
+                //jos on backspace
+                else if (info.Key == ConsoleKey.Backspace)
+                {
+                    //onko annettu salasana tyhjä
+                    if (!string.IsNullOrEmpty(Salasana))
+                    {
+                        //poistaa yhden merkin annetun salasanan lopusta
+                        Salasana = Salasana.Substring(0, Salasana.Length - 1);
+                        //hakee cursorin sijainnin
+                        int pos = Console.CursorLeft;
+                        //Siirtää cursoria yhden merkin verran vasemmalle
+                        Console.SetCursorPosition(pos - 1, Console.CursorTop);
+                        //vaihtaa tähden tyhjään
+                        Console.Write(" ");
+                        //siirtää cursorin taas yhden vasemmalle
+                        Console.SetCursorPosition(pos - 1, Console.CursorTop);
+                    }
+                }
+                info = Console.ReadKey(true);
             }
+            Console.WriteLine();
+            return Salasana;
+        }
         static void Main(string[] args)
         {
 
