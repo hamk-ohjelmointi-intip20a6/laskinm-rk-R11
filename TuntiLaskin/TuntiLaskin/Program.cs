@@ -167,12 +167,10 @@ namespace TuntiLaskin
                                         {
                                             SalasananVaihto SalasanaTyyppi = new SalasananVaihto();
                                             uusiSalasana = SalasanaTyyppi.SalasanaVaihdetaan();
+
                                             TyoLista[3, 1] = null;
                                             TyoLista[3, 1] = uusiSalasana;
                                             Salasana = TyoLista[3, 1];
-                                            Console.WriteLine(uusiSalasana);
-                                            Console.WriteLine(TyoLista[3, 1]);
-                                            Console.WriteLine(Salasana);
                                         }
                                         else
                                         {
@@ -314,6 +312,25 @@ namespace TuntiLaskin
                                         Console.Write("Tehdyt tunnit: ");
                                         Console.WriteLine(tehdytTunnit + "h");
                                         Console.WriteLine("---------------------------");
+                                    }
+                                    else if (Valinta == 3)
+                                    {
+                                        Console.WriteLine("Syötä nykyinen salasanasi:");
+                                        string AnnettuSalasana = Console.ReadLine();
+
+                                        if (Salasana == AnnettuSalasana)
+                                        {
+                                            SalasananVaihto SalasanaTyyppi = new SalasananVaihto();
+                                            uusiSalasana = SalasanaTyyppi.SalasanaVaihdetaan();
+
+                                            TyoLista[h, 1] = null;
+                                            TyoLista[h, 1] = uusiSalasana;
+                                            Salasana = TyoLista[h, 1];
+                                        }
+                                        else
+                                        {
+                                            Console.WriteLine("Väärä salasana");
+                                        }
                                     }
                                     else if (Valinta == 0)
                                     {

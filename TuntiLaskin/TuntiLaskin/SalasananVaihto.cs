@@ -8,17 +8,28 @@ namespace TuntiLaskin
 {
     class SalasananVaihto
     {
-        public string Salasana { get; set; }
+        //luokan sisäinen muuttuja, julkinen
+        public string UusiSalasana { get; set; }
 
-        public SalasananVaihto(string salasana)
+        //konstruktori, jossa voidaan alustaa muuttuja
+        public SalasananVaihto()//string salasana)
         {
-            this.Salasana = salasana;
+            //this.UusiSalasana = salasana;
         }
 
-        public void SalasanaVaihdetaan(string SyotettySalasana)
+        /*luokan tärkein metodi
+         *Kun metodia kutsutaan pääohjelmassa, 
+         * syötetään samalla nykyinen salasana.*/
+        public string SalasanaVaihdetaan()
         {
-            Salasana = Console.ReadLine();
-            //SyotettySalasana 
+            //pyydetää uus salasana ja tallennetaan UusiSalasana muuttujaan
+            Console.WriteLine("Anna uusi salasana.");
+            string UusiSalasana = Console.ReadLine();
+
+            //Syötetty salasana palautetaan vahvistuksen jälkeen
+            Console.WriteLine("Onko tämä oikein?");
+            Console.WriteLine(UusiSalasana);
+            return UusiSalasana;
         }
 
     }
