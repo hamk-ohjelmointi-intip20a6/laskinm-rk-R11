@@ -96,7 +96,7 @@ namespace TuntiLaskin
 
                     if (Kayttaja == "Admin")
                     {
-                        Salasana = SalasananSuojaus();
+                        string Salasana = SalasananSuojaus();
                         if (Salasana == TyoLista[3, 1])
                         {
                             Console.WriteLine("Hei Admin!");
@@ -201,7 +201,7 @@ namespace TuntiLaskin
 
                     else if (Kayttaja == TyoLista[h, 0])
                     {
-                        Salasana = SalasananSuojaus();
+                        string Salasana = SalasananSuojaus();
                         if (Salasana == TyoLista[h, 1])
                         {
                             Console.WriteLine("Hei " + Kayttaja + "!");
