@@ -20,9 +20,9 @@ namespace TuntiLaskin
             TyoLista[0, 3] = "12";    //Tuntipalkka(brutto)
             TyoLista[0, 4] = "68";    //Ikä
             TyoLista[0, 5] = "18";    //Veroprosentti
-            TyoLista[0, 6] = "8,65";  //Työeläke
-            TyoLista[0, 7] = "1,4";   //Työttömyysvakuutusmaksu
-            TyoLista[0, 8] = "10";    //Tuntipalkka(Netto)
+            //TyoLista[0, 6] = "8,65";  //Työeläke
+            TyoLista[0, 6] = "1,4";   //Työttömyysvakuutusmaksu
+            TyoLista[0, 7] = "10";    //Tuntipalkka(Netto)
 
             TyoLista[1, 0] = "matti";
             TyoLista[1, 1] = "joo";
@@ -30,9 +30,9 @@ namespace TuntiLaskin
             TyoLista[1, 3] = "15";
             TyoLista[1, 4] = "52";
             TyoLista[1, 5] = "26";
-            TyoLista[1, 6] = "8,65";
-            TyoLista[1, 7] = "0,5";
-            TyoLista[1, 8] = "11";
+            //TyoLista[1, 6] = "8,65";
+            TyoLista[1, 6] = "0,5";
+            TyoLista[1, 7] = "11";
 
             TyoLista[2, 0] = "maija";
             TyoLista[2, 1] = "jep";
@@ -40,13 +40,16 @@ namespace TuntiLaskin
             TyoLista[2, 3] = "14";
             TyoLista[2, 4] = "38";
             TyoLista[2, 5] = "12";
-            TyoLista[2, 6] = "8,65";
-            TyoLista[2, 7] = "1,4";
-            TyoLista[2, 8] = "13";
+            //TyoLista[2, 6] = "8,65";
+            TyoLista[2, 6] = "1,4";
+            TyoLista[2, 7] = "13";
 
+            TyoLista[3, 0] = "Admin";
+            TyoLista[3, 1] = "Password"; 
 
             Console.WriteLine("Hello world");
             string Salasana = "";
+            string uusiSalasana = "";
             //Käyttäjän valinta
             while (true)
             {
@@ -92,7 +95,8 @@ namespace TuntiLaskin
                             info = Console.ReadKey(true);
                         }
                         Console.WriteLine();
-                        if (Salasana == "Password")
+                        Console.WriteLine(TyoLista[3, 1]);
+                        if (Salasana == TyoLista[3, 1])
                         {
                             Console.WriteLine("Hei Admin!");
                             while (true)
@@ -101,6 +105,7 @@ namespace TuntiLaskin
                                 Console.WriteLine("Paina 1 Tarkastellaksesi työntekijöiden tietoja");
                                 Console.WriteLine("Paina 2 Muokataksesi työntekijöiden tietoja");
                                 Console.WriteLine("Paina 3 Lisätäksesi työntekijän");
+                                Console.WriteLine("Paina 4 muuttaaksesi salasanasi");
                                 Console.WriteLine("Paina 0 kirjautuaksesi ulos");
                                 //ottaa stringin adminin valinnasta
                                 string valinta = Console.ReadLine();
@@ -153,6 +158,27 @@ namespace TuntiLaskin
                                         TyoLista[i, 1] = KayttajaSalasana;
                                         //Console.WriteLine(i + "nimi" + TyoLista[i, 0] + "salasana" + TyoLista[i, 1]);
                                     }
+                                    else if (Valinta == 4)
+                                    {
+                                        Console.WriteLine("Syötä nykyinen salasanasi:");
+                                        string AnnettuSalasana = Console.ReadLine();
+
+                                        if (Salasana == AnnettuSalasana)
+                                        {
+                                            SalasananVaihto SalasanaTyyppi = new SalasananVaihto();
+                                            uusiSalasana = SalasanaTyyppi.SalasanaVaihdetaan();
+                                            TyoLista[3, 1] = null;
+                                            TyoLista[3, 1] = uusiSalasana;
+                                            Salasana = TyoLista[3, 1];
+                                            Console.WriteLine(uusiSalasana);
+                                            Console.WriteLine(TyoLista[3, 1]);
+                                            Console.WriteLine(Salasana);
+                                        }
+                                        else
+                                        {
+                                            Console.WriteLine("Väärä salasana");
+                                        }
+                                    }
                                     else if (Valinta == 0)
                                     {
                                         Salasana = null;
@@ -161,7 +187,7 @@ namespace TuntiLaskin
                                     }
                                     else
                                     {
-                                        Console.WriteLine("Anna luku väliltä 0-3");
+                                        Console.WriteLine("Anna luku väliltä 0-4");
                                     }
                                 }
                             }
@@ -217,6 +243,7 @@ namespace TuntiLaskin
                                 //työntekijän valikko
                                 Console.WriteLine("Paina 1 Lisätäksesi tunteja");
                                 Console.WriteLine("Paina 2 tarkastella tietojasi");
+                                Console.WriteLine("Paina 3 muuttaaksesi salasanasi");
                                 Console.WriteLine("Paina 0 kirjautuaksesi ulos");
                                 string valinta = Console.ReadLine();//käyttäjän valinta
                                 //Yritetään muuttaa numeroksi
@@ -266,7 +293,7 @@ namespace TuntiLaskin
                                     else if (Valinta == 2)
                                     {
                                         //omien tietojen tarkastelu
-                                        var tuntipalkka = TyoLista[0, 3];
+                                        var tuntipalkka = TyoLista[h, 3];
                                         var veroprosentti = TyoLista[h, 5];
                                         var tehdytTunnit = TyoLista[h, 2];
 
@@ -308,6 +335,8 @@ namespace TuntiLaskin
                         }
                         break;
                     }
+
+
                 }
             }
 
