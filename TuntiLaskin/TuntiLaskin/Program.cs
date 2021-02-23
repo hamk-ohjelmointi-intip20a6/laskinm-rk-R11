@@ -8,45 +8,45 @@ namespace TuntiLaskin
 {
     class Program
     {
-                public static string SalasananSuojaus()
-        {
-            string Salasana = null;
-            Console.WriteLine("Anna salasana");
-            ConsoleKeyInfo info = Console.ReadKey(true);
-            //jos ei ole enter
-            while (info.Key != ConsoleKey.Enter)
+           public static string SalasananSuojaus()
             {
-                //jos ei ole backspace
-                if (info.Key != ConsoleKey.Backspace)
+                string Salasana = null;
+                Console.WriteLine("Anna salasana");
+                ConsoleKeyInfo info = Console.ReadKey(true);
+                //jos ei ole enter
+                while (info.Key != ConsoleKey.Enter)
                 {
-                    //kirjoittaa tähden konsoliin
-                    Console.Write("*");
-                    //lisää painetun merkin annetun salasanan perään
-                    Salasana += info.KeyChar;
-                }
-                //jos on backspace
-                else if (info.Key == ConsoleKey.Backspace)
-                {
-                    //onko annettu salasana tyhjä
-                    if (!string.IsNullOrEmpty(Salasana))
+                    //jos ei ole backspace
+                    if (info.Key != ConsoleKey.Backspace)
                     {
-                        //poistaa yhden merkin annetun salasanan lopusta
-                        Salasana = Salasana.Substring(0, Salasana.Length - 1);
-                        //hakee cursorin sijainnin
-                        int pos = Console.CursorLeft;
-                        //Siirtää cursoria yhden merkin verran vasemmalle
-                        Console.SetCursorPosition(pos - 1, Console.CursorTop);
-                        //vaihtaa tähden tyhjään
-                        Console.Write(" ");
-                        //siirtää cursorin taas yhden vasemmalle
-                        Console.SetCursorPosition(pos - 1, Console.CursorTop);
+                        //kirjoittaa tähden konsoliin
+                        Console.Write("*");
+                        //lisää painetun merkin annetun salasanan perään
+                        Salasana += info.KeyChar;
                     }
+                    //jos on backspace
+                    else if (info.Key == ConsoleKey.Backspace)
+                    {
+                        //onko annettu salasana tyhjä
+                        if (!string.IsNullOrEmpty(Salasana))
+                        {
+                            //poistaa yhden merkin annetun salasanan lopusta
+                            Salasana = Salasana.Substring(0, Salasana.Length - 1);
+                            //hakee cursorin sijainnin
+                            int pos = Console.CursorLeft;
+                            //Siirtää cursoria yhden merkin verran vasemmalle
+                            Console.SetCursorPosition(pos - 1, Console.CursorTop);
+                            //vaihtaa tähden tyhjään
+                            Console.Write(" ");
+                            //siirtää cursorin taas yhden vasemmalle
+                            Console.SetCursorPosition(pos - 1, Console.CursorTop);
+                        }
+                    }
+                    info = Console.ReadKey(true);
                 }
-                info = Console.ReadKey(true);
+                Console.WriteLine();
+                return Salasana;
             }
-            Console.WriteLine();
-            return Salasana;
-        }
         static void Main(string[] args)
         {
 
@@ -88,7 +88,7 @@ namespace TuntiLaskin
 
             Console.WriteLine("Hello world");
             string Salasana = "";
-            string uusiSalasana = "";
+            string uusiSalasana;
             //Käyttäjän valinta
             while (true)
             {
@@ -98,12 +98,11 @@ namespace TuntiLaskin
                 for (int h = 0; h < TyoLista.GetLength(0); h++)
                 {
                     int Valinta; //admin sekä työntekijän valikko valinta muuttuja
+
                     if (Kayttaja == "Admin")
                     {
-                     
-                        }
-                        Console.WriteLine();
-                        if (Salasana == "Password")
+                        Salasana = SalasananSuojaus();
+                        if (Salasana == TyoLista[3, 1])
                         {
                             Console.WriteLine("Hei Admin!");
                             while (true)
@@ -167,10 +166,8 @@ namespace TuntiLaskin
                                     }
                                     else if (Valinta == 4)
                                     {
-                                        Console.WriteLine("Syötä nykyinen salasanasi:");
-                                        string AnnettuSalasana = Console.ReadLine();
-
-                                        if (Salasana == AnnettuSalasana)
+                                        Salasana = SalasananSuojaus();
+                                        if (Salasana == TyoLista[3, 1])
                                         {
                                             SalasananVaihto SalasanaTyyppi = new SalasananVaihto();
                                             uusiSalasana = SalasanaTyyppi.SalasanaVaihdetaan();
@@ -181,8 +178,10 @@ namespace TuntiLaskin
                                         }
                                         else
                                         {
-                                            Console.WriteLine("Väärä salasana");
+                                            Console.WriteLine("Väärä salasana.");
+                                            Console.WriteLine();
                                         }
+                                       
                                     }
                                     else if (Valinta == 0)
                                     {
@@ -204,9 +203,10 @@ namespace TuntiLaskin
                         }
                         break;
                     }
+
                     else if (Kayttaja == TyoLista[h, 0])
                     {
-                        string Salasana = SalasananSuojaus();
+                        Salasana = SalasananSuojaus();
                         if (Salasana == TyoLista[h, 1])
                         {
                             Console.WriteLine("Hei " + Kayttaja + "!");
@@ -318,7 +318,7 @@ namespace TuntiLaskin
                                     Console.WriteLine("Anna luku väliltä 0 - 2");
                                 }
                             }
-                        }  
+                        }
                         else
                         {
                             Console.WriteLine("Väärä salasana");
@@ -326,9 +326,10 @@ namespace TuntiLaskin
                         }
                         break;
                     }
-
-
                 }
+
+
+
             }
 
         }
