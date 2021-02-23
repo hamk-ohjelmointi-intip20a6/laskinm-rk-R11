@@ -58,44 +58,30 @@ namespace TuntiLaskin
         static void Main(string[] args)
         {
 
-            String[, ] TyoLista = new string[100, 100];
-            //TyoLista[Käyttänimi, Salasana, Työtunnit, Tuntipalkka(brutto),
-            //Ikä, Veroprosentti, Työeläke, Työttömyysvakuutusmaksu]
-            TyoLista[0, 0] = "pekka"; //Käyttänimi
-            TyoLista[0, 1] = "vittu"; //Salasana
-            TyoLista[0, 2] = "8";     //Työtunnit
-            TyoLista[0, 3] = "12";    //Tuntipalkka(brutto)
-            TyoLista[0, 4] = "68";    //Ikä
-            TyoLista[0, 5] = "18";    //Veroprosentti
-            //TyoLista[0, 6] = "8,65";  //Työeläke
-            TyoLista[0, 6] = "1,4";   //Työttömyysvakuutusmaksu
-            TyoLista[0, 7] = "10";    //Tuntipalkka(Netto)
-
-            TyoLista[1, 0] = "matti";
-            TyoLista[1, 1] = "joo";
-            TyoLista[1, 2] = "10";
-            TyoLista[1, 3] = "15";
-            TyoLista[1, 4] = "52";
-            TyoLista[1, 5] = "26";
-            //TyoLista[1, 6] = "8,65";
-            TyoLista[1, 6] = "0,5";
-            TyoLista[1, 7] = "11";
-
-            TyoLista[2, 0] = "maija";
-            TyoLista[2, 1] = "jep";
-            TyoLista[2, 2] = "25";
-            TyoLista[2, 3] = "14";
-            TyoLista[2, 4] = "38";
-            TyoLista[2, 5] = "12";
-            //TyoLista[2, 6] = "8,65";
-            TyoLista[2, 6] = "1,4";
-            TyoLista[2, 7] = "13";
-
-            TyoLista[3, 0] = "Admin";
-            TyoLista[3, 1] = "Password"; 
-
+            String input = File.ReadAllText(@"TyonTekijaLista.txt");
+            int rivi = 0, sarake = 0;
+            string[,] TyoLista = new string[100, 100];
+            foreach (var row in input.Split('\n'))
+            {
+                sarake = 0;
+                foreach (var col in row.Trim().Split('.'))
+                {
+                    TyoLista[rivi, sarake] = col.Trim();
+                    sarake++;
+                }
+                rivi++;
+            }
+            /*
+            TyoLista[, 0] = Käyttäjänimi
+            TyoLista[, 1] = Salasana
+            TyoLista[, 2] = Työtunnit
+            TyoLista[, 3] = Tuntipalkka(brutto)
+            TyoLista[, 4] = Ikä
+            TyoLista[, 5] = veroprosentti
+            TyoLista[, 6] = Työeläke
+            TyoLista[, 7] = Työttömyysvakuutusmaksu
+            */
             Console.WriteLine("Hello world");
-            string Salasana = "";
             string uusiSalasana;
             //Käyttäjän valinta
             while (true)
