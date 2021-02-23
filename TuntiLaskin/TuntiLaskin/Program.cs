@@ -8,7 +8,7 @@ namespace TuntiLaskin
 {
     class Program
     {
-                public static string SalasananSuojaus()
+        public static string SalasananSuojaus()
         {
             string Salasana = null;
             Console.WriteLine("Anna salasana");
