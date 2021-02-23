@@ -8,7 +8,17 @@ namespace TuntiLaskin
 {
     class Program
     {
+<<<<<<< HEAD
            public static string SalasananSuojaus()
+=======
+        public static string SalasananSuojaus()
+        {
+            string Salasana = null;
+            Console.WriteLine("Anna salasana");
+            ConsoleKeyInfo info = Console.ReadKey(true);
+            //jos ei ole enter
+            while (info.Key != ConsoleKey.Enter)
+>>>>>>> 40c795654c6bb9fc526bdb1e0d54b01b34efd041
             {
                 string Salasana = null;
                 Console.WriteLine("Anna salasana");
