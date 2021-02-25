@@ -242,6 +242,38 @@ namespace TuntiLaskin
                         string Salasana = SalasananSuojaus();
                         if (Salasana == TyoLista[h, 1])
                         {
+                            //LASKUT
+                            double kauttajaTyoTunnit = Convert.ToDouble(TyoLista[h, 2]);
+                            double kauttajaTuntiPalkka = Convert.ToDouble(TyoLista[h, 3]);
+                            double kauttajaVeroProsentti = (Convert.ToDouble(TyoLista[h, 5]) / 100);
+                            string syntymaPaivaString = TyoLista[h, 4];
+                            DateTime syntymaPaiva = Convert.ToDateTime(TyoLista[h, 4]); //YYYY-MM-DD
+
+                            DateTime paivaNyt = DateTime.Now; //YYYY-MM-DD
+                            string paivaNytString = paivaNyt.ToString("yyyy-MM-dd").Remove(4, 1);
+                            paivaNytString = paivaNytString.Remove(6, 1);
+                            int paivaNytInt = Convert.ToInt32(paivaNytString);
+                            Console.WriteLine(paivaNytString);
+
+                            syntymaPaivaString = syntymaPaivaString.Remove(4, 1);
+                            syntymaPaivaString = syntymaPaivaString.Remove(6, 1);
+                            Console.WriteLine(syntymaPaivaString);
+                            int syntymapaivaInt = Convert.ToInt32(syntymaPaivaString);
+                            var kauttajaIkaString = Convert.ToString(paivaNytInt - syntymapaivaInt).Remove(2);
+                            int kauttajaIka = Convert.ToInt16(kauttajaIkaString);
+                            Console.WriteLine(kauttajaIka);
+
+                            double kauttajaTyoElakeProsentti = 0;
+
+                            if (kauttajaIka < 53)
+                            {
+                                kauttajaTyoElakeProsentti = 0.015;
+                            }
+                            else if (kauttajaIka >= 53 && kauttajaIka < 63)
+                            {
+                                kauttajaTyoElakeProsentti = 0.017;
+                            }
+
                             Console.WriteLine("Hei " + Kayttaja + "!");
                             while (true)
                             {
