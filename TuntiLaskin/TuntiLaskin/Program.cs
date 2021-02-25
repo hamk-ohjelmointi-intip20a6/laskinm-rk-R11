@@ -138,6 +138,18 @@ namespace TuntiLaskin
                                         Console.WriteLine(kauttajatunnus);
                                         Console.WriteLine("Syötä salasanasi: ");
                                         string KayttajaSalasana = Console.ReadLine();
+                                        //Lisää työntekijän syntymäaika
+                                        Console.Write("Syötä syntymäaikasi (PP.KK.VVVV): ");
+                                        string[] syntymaAika = (Console.ReadLine()).Split('.');
+                                        if (syntymaAika[1].Length == 1)
+                                        {
+                                            syntymaAika[1] = "0" + syntymaAika[1];
+                                        }
+                                        if (syntymaAika[0].Length == 1)
+                                        {
+                                            syntymaAika[0] = "0" + syntymaAika[0];
+                                        }
+                                        TyoLista[h, 4] = syntymaAika[2] + "-" + syntymaAika[1] + "-" + syntymaAika[0];
                                         int i;
                                         for (i = 0; i < TyoLista.GetLength(0); i++)
                                         {
