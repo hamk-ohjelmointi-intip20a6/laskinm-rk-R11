@@ -71,8 +71,7 @@ namespace TuntiLaskin
             TyoLista[, 3] = Tuntipalkka(brutto)
             TyoLista[, 4] = Ikä
             TyoLista[, 5] = veroprosentti
-            TyoLista[, 6] = Työeläke
-            TyoLista[, 7] = Työttömyysvakuutusmaksu
+            TyoLista[, 6] = Työttömyysvakuutusmaksu
             */
             Console.WriteLine("Hello world");
             string uusiSalasana;
