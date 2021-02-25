@@ -172,6 +172,41 @@ namespace TuntiLaskin
                                     else if (Valinta == 0)
                                     {
                                         Salasana = null;
+                                                                                int f;
+                                        for (f = 0; f < TyoLista.GetLength(0); f++)
+                                        {
+                                            if (TyoLista[f, 0] == null)
+                                            {
+                                                f--;
+                                                break;
+                                            }
+                                        }
+                                        int q;
+                                        for (q = 0; q < TyoLista.GetLength(1); q++)
+                                        {
+                                            if (TyoLista[1, q] == null)
+                                            {
+                                                break;
+                                            }
+                                        }
+                                        int s = q - 1;
+                                        using (var sw = new StreamWriter(@"TyonTekijaLista.txt"))
+                                        {
+                                            for (int p = 0; p < f; p++)
+                                            {
+                                                for (int k = 0; k < q; k++)
+                                                {
+                                                    sw.Write(TyoLista[p, k]);
+                                                    if (k < s)
+                                                    {
+                                                        sw.Write(".");
+                                                    }
+                                                }
+                                                sw.Write("\n");
+                                            }
+                                            sw.Flush();
+                                            sw.Close();
+                                        }
                                         //paluu käyttäjän valintaan
                                         break;
                                     }
@@ -296,6 +331,41 @@ namespace TuntiLaskin
                                     {
                                         //paluu käyttäjän valintaan
                                         Salasana = null;
+                                                                                int f;
+                                        for (f = 0; f < TyoLista.GetLength(0); f++)
+                                        {
+                                            if (TyoLista[f, 0] == null)
+                                            {
+                                                f--;
+                                                break;
+                                            }
+                                        }
+                                        int q;
+                                        for (q = 0; q < TyoLista.GetLength(1); q++)
+                                        {
+                                            if (TyoLista[1, q] == null)
+                                            {
+                                                break;
+                                            }
+                                        }
+                                        int s = q - 1;
+                                        using (var sw = new StreamWriter(@"TyonTekijaLista.txt"))
+                                        {
+                                            for (int p = 0; p < f; p++)
+                                            {
+                                                for (int k = 0; k < q; k++)
+                                                {
+                                                    sw.Write(TyoLista[p, k]);
+                                                    if (k < s)
+                                                    {
+                                                        sw.Write(".");
+                                                    }
+                                                }
+                                                sw.Write("\n");
+                                            }
+                                            sw.Flush();
+                                            sw.Close();
+                                        }
                                         break;
                                     }
                                 }
