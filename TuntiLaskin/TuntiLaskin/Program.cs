@@ -50,7 +50,7 @@ namespace TuntiLaskin
         }
         static void Main(string[] args)
         {
-
+            Console.ForegroundColor = ConsoleColor.Green;
             String input = File.ReadAllText(@"TyonTekijaLista.txt");
             int rivi = 0, sarake = 0;
             string[,] TyoLista = new string[100, 100];
@@ -85,12 +85,12 @@ namespace TuntiLaskin
                 {
                     int Valinta; //admin sekä työntekijän valikko valinta muuttuja
 
-                    if (Kayttaja == "Admin")
+                    if (Kayttaja == TyoLista[0, 0])
                     {
                         string Salasana = SalasananSuojaus();
-                        if (Salasana == TyoLista[3, 1])
+                        if (Salasana == TyoLista[0, 1])
                         {
-                            Console.WriteLine("Hei Admin!");
+                            Console.WriteLine("Hei " + Kayttaja + "!");
                             while (true)
                             {
                                 //Admin valikko
@@ -107,18 +107,90 @@ namespace TuntiLaskin
                                     if (Valinta == 1)
                                     {
                                         //Tarkastellaan työntekijöiden tietoja
-                                        int i;
-                                        for (i = 1; i < TyoLista.GetLength(0); i++)
+                                        while(true)
                                         {
-                                            if (TyoLista[i, 0] == null)
+                                            Console.WriteLine("Työntekijät:");
+                                            int i;
+                                            for (i = 1; i < TyoLista.GetLength(0); i++)
                                             {
-                                                i++;
-                                                break;
+                                                if (TyoLista[i, 0] == null)
+                                                {
+                                                    i++;
+                                                    break;
+                                                }
                                             }
-                                        }
-                                        for (int s = 0; s < i; s++)
-                                        {
-                                            Console.WriteLine(TyoLista[s, 0]);
+                                            for (int s = 1; s < i; s++)
+                                            {
+                                                Console.WriteLine(TyoLista[s, 0]);
+                                            }
+                                            for (i = 1; i < TyoLista.GetLength(0); i++)
+                                            {
+                                                Console.WriteLine("Kenen tietoja tahdot katsella?");
+                                                Console.WriteLine("Paina 0 poistuaksesi");
+                                                string TyontekijanTarkastus = Console.ReadLine();
+                                                if (TyontekijanTarkastus == TyoLista[i, 0])
+                                                {
+                                                    var tuntipalkka = TyoLista[i, 3];
+                                                    var veroprosentti = TyoLista[i, 5];
+                                                    var tehdytTunnit = TyoLista[i, 2];
+                                                    Console.WriteLine("Tässä on tiedot.");
+                                                    Console.WriteLine("---------------------------");
+                                                    Console.Write("Käyttäjän nimi: ");
+                                                    Console.Write(TyoLista[i, 0]);
+                                                    Console.WriteLine();
+                                                    Console.Write("Tuntipalkka: ");
+                                                    Console.Write(tuntipalkka + "e");
+                                                    Console.WriteLine();
+                                                    Console.Write("Veroprosentti: ");
+                                                    Console.Write(veroprosentti + "%");
+                                                    Console.WriteLine();
+                                                    Console.Write("Tehdyt tunnit: ");
+                                                    Console.WriteLine(tehdytTunnit + "h");
+                                                    Console.WriteLine("---------------------------");
+                                                    while (true)
+                                                    {
+                                                        Console.WriteLine("Paina 1 muokataksesi käyttäjänimeä");
+                                                        Console.WriteLine("Paina 2 muokataksesi tehtyjä työtunteja");
+                                                        Console.WriteLine("Paina 3 muokataksesi brutto palkkaa");
+                                                        Console.WriteLine("Paina 4 muokataksesi veroprosenttia");
+                                                        Console.WriteLine("Paina 0 palataksesi");
+
+                                                        string tyonTekijanMuokkaus = Console.ReadLine();
+                                                        if (int.TryParse(tyonTekijanMuokkaus, out int TyonTekijanMuokkaus))
+                                                        {
+                                                            if (TyonTekijanMuokkaus == 1)
+                                                            {
+                                                                Console.WriteLine("Anna Uusi käyttäjänimi");
+                                                                string UusiKayttajaNimi = Console.ReadLine();
+                                                                TyoLista[i, 0] = UusiKayttajaNimi;
+                                                            }
+                                                            else if (TyonTekijanMuokkaus == 2)
+                                                            {
+                                                                Console.WriteLine("Anna kaikki tehdyt tunnit yhteensä");
+                                                                string UusiTehdytTunnit = Console.ReadLine();
+                                                                TyoLista[i, 2] = UusiTehdytTunnit;
+                                                            }
+                                                            else if (TyonTekijanMuokkaus == 3)
+                                                            {
+                                                                Console.WriteLine("Anna uusi brutto palkka");
+                                                                string UusiBrutto = Console.ReadLine();
+                                                                TyoLista[i, 3] = UusiBrutto;
+                                                            }
+                                                            else if (TyonTekijanMuokkaus == 4)
+                                                            {
+                                                                Console.WriteLine("Anna uusi veroprosentti");
+                                                                string UusiVeroProsentti = Console.ReadLine();
+                                                                TyoLista[i, 5] = UusiVeroProsentti;
+                                                            }
+                                                            else if (TyonTekijanMuokkaus == 0)
+                                                            {
+                                                                break;
+                                                            }
+                                                            else { Console.WriteLine("Anna luku väliltä 0-4"); }
+                                                        }
+                                                    }
+                                                }
+                                            }
                                         }
                                     }
                                     else if (Valinta == 2)
@@ -427,11 +499,7 @@ namespace TuntiLaskin
                         break;
                     }
                 }
-
-
-
             }
-
         }
     }
 }
