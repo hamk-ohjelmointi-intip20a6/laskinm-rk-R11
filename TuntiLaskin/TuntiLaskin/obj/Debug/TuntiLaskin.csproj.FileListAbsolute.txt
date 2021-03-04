@@ -1,0 +1,21 @@
+G:\Koulu\ohjelmointi\c#\Console\tuntilaskin\TuntiLaskin\bin\Debug\TuntiLaskin.exe.config
+G:\Koulu\ohjelmointi\c#\Console\tuntilaskin\TuntiLaskin\bin\Debug\TuntiLaskin.exe
+G:\Koulu\ohjelmointi\c#\Console\tuntilaskin\TuntiLaskin\bin\Debug\TuntiLaskin.pdb
+G:\Koulu\ohjelmointi\c#\Console\tuntilaskin\TuntiLaskin\obj\Debug\TuntiLaskin.csprojAssemblyReference.cache
+G:\Koulu\ohjelmointi\c#\Console\tuntilaskin\TuntiLaskin\obj\Debug\TuntiLaskin.csproj.CoreCompileInputs.cache
+G:\Koulu\ohjelmointi\c#\Console\tuntilaskin\TuntiLaskin\obj\Debug\TuntiLaskin.exe
+G:\Koulu\ohjelmointi\c#\Console\tuntilaskin\TuntiLaskin\obj\Debug\TuntiLaskin.pdb
+C:\Users\Joni Salonen\Desktop\TuntiLaskin\TuntiLaskin\bin\Debug\TuntiLaskin.exe.config
+C:\Users\Joni Salonen\Desktop\TuntiLaskin\TuntiLaskin\bin\Debug\TuntiLaskin.exe
+C:\Users\Joni Salonen\Desktop\TuntiLaskin\TuntiLaskin\bin\Debug\TuntiLaskin.pdb
+C:\Users\Joni Salonen\Desktop\TuntiLaskin\TuntiLaskin\obj\Debug\TuntiLaskin.csprojAssemblyReference.cache
+C:\Users\Joni Salonen\Desktop\TuntiLaskin\TuntiLaskin\obj\Debug\TuntiLaskin.csproj.CoreCompileInputs.cache
+C:\Users\Joni Salonen\Desktop\TuntiLaskin\TuntiLaskin\obj\Debug\TuntiLaskin.exe
+C:\Users\Joni Salonen\Desktop\TuntiLaskin\TuntiLaskin\obj\Debug\TuntiLaskin.pdb
+C:\Users\Joni Salonen\Desktop\Uusi kansio (8)\TuntiLaskin\TuntiLaskin\bin\Debug\TuntiLaskin.exe.config
+C:\Users\Joni Salonen\Desktop\Uusi kansio (8)\TuntiLaskin\TuntiLaskin\bin\Debug\TuntiLaskin.exe
+C:\Users\Joni Salonen\Desktop\Uusi kansio (8)\TuntiLaskin\TuntiLaskin\bin\Debug\TuntiLaskin.pdb
+C:\Users\Joni Salonen\Desktop\Uusi kansio (8)\TuntiLaskin\TuntiLaskin\obj\Debug\TuntiLaskin.csprojAssemblyReference.cache
+C:\Users\Joni Salonen\Desktop\Uusi kansio (8)\TuntiLaskin\TuntiLaskin\obj\Debug\TuntiLaskin.csproj.CoreCompileInputs.cache
+C:\Users\Joni Salonen\Desktop\Uusi kansio (8)\TuntiLaskin\TuntiLaskin\obj\Debug\TuntiLaskin.exe
+C:\Users\Joni Salonen\Desktop\Uusi kansio (8)\TuntiLaskin\TuntiLaskin\obj\Debug\TuntiLaskin.pdb
