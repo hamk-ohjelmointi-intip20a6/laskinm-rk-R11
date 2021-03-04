@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace TuntiLaskin
 {
-        class SalasananVaihto
+    class SalasananVaihto
     {
         //konstruktori
         public SalasananVaihto()
@@ -17,16 +17,14 @@ namespace TuntiLaskin
         /*luokan tärkein metodi. Kun metodia kutsutaan pääohjelmassa,  syötetään samalla nykyinen salasana.*/
         public string SalasanaVaihdetaan()
         {
-            while(true)
+            while (true)
             {
                 //pyydetää uus salasana ja tallennetaan UusiSalasana muuttujaan
                 Console.WriteLine("Anna uusi salasana.");
                 string UusiSalasana = Console.ReadLine();
-
                 Console.WriteLine("Anna uusi salasana uudelleen.");
                 string UusiSalasanaToistamiseen = Console.ReadLine();
-
-                if(UusiSalasana == UusiSalasanaToistamiseen)
+                if (UusiSalasana == UusiSalasanaToistamiseen)
                 {
                     //Syötetty salasana palautetaan vahvistuksen jälkeen
                     Console.WriteLine("Salasana on muutettu");
@@ -38,14 +36,12 @@ namespace TuntiLaskin
                     Console.WriteLine("Syötä salasana uudelleen.");
                     Console.WriteLine("--------------------------");
                 }
-
             }
         }
-
     }
     class Program
     {
-       public static string SalasananSuojaus()
+        public static string SalasananSuojaus()
         {
             string Salasana = null;
             Console.WriteLine("Anna salasana");
@@ -99,6 +95,26 @@ namespace TuntiLaskin
                     sarake++;
                 }
                 rivi++;
+            }          
+            DateTime AikaNyt = DateTime.Now;
+            int luku = Convert.ToInt16(TyoLista[0, 2]);
+            if (luku < AikaNyt.Month)
+            {
+                int i;
+                for (i = 1; i < TyoLista.GetLength(0); i++)
+                {
+                    if (TyoLista[i, 2] == null)
+                    {
+                        i++;
+                        break;
+                    }
+                }
+                for (int s = 1; s < i; s++)
+                {
+                    TyoLista[s, 2] = "0";
+                }
+                string UusiKuukausi = AikaNyt.Month.ToString();
+                TyoLista[0, 2] = UusiKuukausi;
             }
             /*
             TyoLista[, 0] = Käyttäjänimi
@@ -109,8 +125,8 @@ namespace TuntiLaskin
             TyoLista[, 5] = veroprosentti
             TyoLista[, 6] = Työttömyysvakuutusmaksu
             */
-            Console.WriteLine("Hello world");
-            string uusiSalasana;
+
+            Console.WriteLine("Tervetuloa tuntilaskuriin!");
             //Käyttäjän valinta
             while (true)
             {
@@ -120,7 +136,6 @@ namespace TuntiLaskin
                 for (int h = 0; h < TyoLista.GetLength(0); h++)
                 {
                     int Valinta; //admin sekä työntekijän valikko valinta muuttuja
-
                     if (Kayttaja == TyoLista[0, 0])
                     {
                         string Salasana = SalasananSuojaus();
@@ -130,11 +145,10 @@ namespace TuntiLaskin
                             while (true)
                             {
                                 //Admin valikko
-                                Console.WriteLine("Paina 1 Tarkastellaksesi työntekijöiden tietoja");
-                                Console.WriteLine("Paina 2 Muokataksesi työntekijöiden tietoja");
-                                Console.WriteLine("Paina 3 Lisätäksesi työntekijän");
-                                Console.WriteLine("Paina 4 muuttaaksesi salasanasi");
-                                Console.WriteLine("Paina 0 kirjautuaksesi ulos");
+                                Console.WriteLine("Paina 1 Tarkastellaksesi sekä muokataksesi työntekijöiden tietoja");
+                                Console.WriteLine("Paina 2 Lisätäksesi työntekijän");
+                                Console.WriteLine("Paina 3 Vaihtaaksesi salasanasi");
+                                Console.WriteLine("Paina 0 kirjautuaksesi ulos ja tallentaaksesi tiedot");
                                 //ottaa stringin adminin valinnasta
                                 string valinta = Console.ReadLine();
                                 //yrittää muuttaa numeroksi
@@ -142,37 +156,73 @@ namespace TuntiLaskin
                                 {
                                     if (Valinta == 1)
                                     {
-                                        //Tarkastellaan työntekijöiden tietoja
                                         while(true)
                                         {
-                                            Console.WriteLine("Työntekijät:");
                                             int i;
                                             for (i = 1; i < TyoLista.GetLength(0); i++)
                                             {
-                                                if (TyoLista[i, 0] == null)
+                                                //Tarkastellaan työntekijöiden tietoja
+                                                Console.Clear();
+                                                Console.WriteLine("Palkkakauden vaihde: " + DateTime.DaysInMonth(AikaNyt.Year, AikaNyt.Month) + "." + AikaNyt.Month + "." + AikaNyt.Year);
+                                                Console.WriteLine("Työntekijät:");
+                                                int m;
+                                                for (m = 1; m < TyoLista.GetLength(0); m++)
                                                 {
-                                                    i++;
-                                                    break;
+                                                    if (TyoLista[m, 0] == null)
+                                                    {
+                                                        m++;
+                                                        break;
+                                                    }
                                                 }
-                                            }
-                                            for (int s = 1; s < i; s++)
-                                            {
-                                                Console.WriteLine(TyoLista[s, 0]);
-                                            }
-                                            for (i = 1; i < TyoLista.GetLength(0); i++)
-                                            {
-                                                Console.WriteLine("Kenen tietoja tahdot katsella?");
-                                                Console.WriteLine("Paina 0 poistuaksesi");
+                                                for (int s = 1; s < m; s++)
+                                                {
+                                                    Console.WriteLine(TyoLista[s, 0]);
+                                                }
+                                                Console.WriteLine("Tietoja tarkastellaksesi, syötä valitun henkilön käyttäjätunnus");
+                                                Console.WriteLine("Paina 0 poistuaksesi\n");
                                                 string TyontekijanTarkastus = Console.ReadLine();
                                                 if (TyontekijanTarkastus == TyoLista[i, 0])
                                                 {
                                                     var tuntipalkka = TyoLista[i, 3];
                                                     var veroprosentti = TyoLista[i, 5];
                                                     var tehdytTunnit = TyoLista[i, 2];
-                                                    Console.WriteLine("Tässä on tiedot.");
-                                                    Console.WriteLine("---------------------------");
-                                                    Console.Write("Käyttäjän nimi: ");
+                                                    var ika = TyoLista[i, 4];
+                                                    //var bruttopalkka = TyoLista[i, 6];   ??
+                                                    Console.Clear();
+                                                    //LASKUT
+                                                    double kauttajaTyoTunnit = Convert.ToDouble(TyoLista[i, 2]);
+                                                    double kauttajaTuntiPalkka = Convert.ToDouble(TyoLista[i, 3]);
+                                                    double kauttajaVeroProsentti = (Convert.ToDouble(TyoLista[i, 5]) / 100);
+                                                    string syntymaPaivaString = TyoLista[i, 4];
+                                                    DateTime syntymaPaiva = Convert.ToDateTime(TyoLista[i, 4]); //YYYY-MM-DD
+
+                                                    DateTime paivaNyt = DateTime.Now; //YYYY-MM-DD
+                                                    string paivaNytString = paivaNyt.ToString("yyyy-MM-dd").Remove(4, 1);
+                                                    paivaNytString = paivaNytString.Remove(6, 1);
+                                                    int paivaNytInt = Convert.ToInt32(paivaNytString);
+
+                                                    syntymaPaivaString = syntymaPaivaString.Remove(4, 1);
+                                                    syntymaPaivaString = syntymaPaivaString.Remove(6, 1);
+                                                    int syntymapaivaInt = Convert.ToInt32(syntymaPaivaString);
+                                                    var kauttajaIkaString = Convert.ToString(paivaNytInt - syntymapaivaInt).Remove(2);
+                                                    int kauttajaIka = Convert.ToInt16(kauttajaIkaString);
+
+                                                    double kauttajaTyoElakeProsentti = 0;
+
+                                                    if (kauttajaIka < 53)
+                                                    {
+                                                        kauttajaTyoElakeProsentti = 0.015;
+                                                    }
+                                                    else if (kauttajaIka >= 53 && kauttajaIka < 63)
+                                                    {
+                                                        kauttajaTyoElakeProsentti = 0.017;
+                                                    }
+                                                    Console.WriteLine("\n---------------------------");
+                                                    Console.Write("Nimi: ");
                                                     Console.Write(TyoLista[i, 0]);
+                                                    Console.WriteLine();
+                                                    Console.Write("Syntymäaika: ");
+                                                    Console.Write(TyoLista[i, 4]);
                                                     Console.WriteLine();
                                                     Console.Write("Tuntipalkka: ");
                                                     Console.Write(tuntipalkka + "e");
@@ -180,17 +230,21 @@ namespace TuntiLaskin
                                                     Console.Write("Veroprosentti: ");
                                                     Console.Write(veroprosentti + "%");
                                                     Console.WriteLine();
+                                                    Console.Write("Työeläkekerroin: " + kauttajaTyoElakeProsentti);
+                                                    Console.WriteLine();
                                                     Console.Write("Tehdyt tunnit: ");
                                                     Console.WriteLine(tehdytTunnit + "h");
                                                     Console.WriteLine("---------------------------");
+                                                    //Console.Write("Bruttopalkka: ");
+                                                    //Console.WriteLine(bruttopalkka + "e");
                                                     while (true)
                                                     {
                                                         Console.WriteLine("Paina 1 muokataksesi käyttäjänimeä");
                                                         Console.WriteLine("Paina 2 muokataksesi tehtyjä työtunteja");
-                                                        Console.WriteLine("Paina 3 muokataksesi brutto palkkaa");
+                                                        Console.WriteLine("Paina 3 muokataksesi bruttopalkkaa");
                                                         Console.WriteLine("Paina 4 muokataksesi veroprosenttia");
-                                                        Console.WriteLine("Paina 0 palataksesi");
-
+                                                        Console.WriteLine("Paina 5 muokataksesi salasanaa");
+                                                        Console.WriteLine("Paina 0 palataksesi\n");
                                                         string tyonTekijanMuokkaus = Console.ReadLine();
                                                         if (int.TryParse(tyonTekijanMuokkaus, out int TyonTekijanMuokkaus))
                                                         {
@@ -199,55 +253,65 @@ namespace TuntiLaskin
                                                                 Console.WriteLine("Anna Uusi käyttäjänimi");
                                                                 string UusiKayttajaNimi = Console.ReadLine();
                                                                 TyoLista[i, 0] = UusiKayttajaNimi;
+                                                                Console.Clear();
                                                             }
                                                             else if (TyonTekijanMuokkaus == 2)
                                                             {
                                                                 Console.WriteLine("Anna kaikki tehdyt tunnit yhteensä");
                                                                 string UusiTehdytTunnit = Console.ReadLine();
                                                                 TyoLista[i, 2] = UusiTehdytTunnit;
+                                                                Console.Clear();
                                                             }
                                                             else if (TyonTekijanMuokkaus == 3)
                                                             {
-                                                                Console.WriteLine("Anna uusi brutto palkka");
+                                                                Console.WriteLine("Anna uusi bruttopalkka");
                                                                 string UusiBrutto = Console.ReadLine();
                                                                 TyoLista[i, 3] = UusiBrutto;
+                                                                Console.Clear();
                                                             }
                                                             else if (TyonTekijanMuokkaus == 4)
                                                             {
                                                                 Console.WriteLine("Anna uusi veroprosentti");
                                                                 string UusiVeroProsentti = Console.ReadLine();
                                                                 TyoLista[i, 5] = UusiVeroProsentti;
+                                                                Console.Clear();
+                                                            }
+                                                            else if (TyonTekijanMuokkaus == 5)
+                                                            {
+                                                                Console.WriteLine("Anna uusi salasana");
+                                                                string Uusisalasana = Console.ReadLine();
+                                                                TyoLista[i, 1] = Uusisalasana;
+                                                                Console.Clear();
                                                             }
                                                             else if (TyonTekijanMuokkaus == 0)
                                                             {
+                                                                Console.Clear();
                                                                 break;
                                                             }
                                                             else { Console.WriteLine("Anna luku väliltä 0-4"); }
                                                         }
                                                     }
                                                 }
+                                                else if (TyontekijanTarkastus == "0") { break; }
                                             }
+                                            break;
                                         }
                                     }
                                     else if (Valinta == 2)
                                     {
-                                        //Muokataan työntekijöiden tietoja
-                                    }
-                                    else if (Valinta == 3)
-                                    {
                                         //Lisätään työntekijä listaan
-                                        Console.Write("Syötä etunimesi: ");
+                                        Console.Write("Syötä uuden työntekijän etunimi: ");
                                         string pieni_etunimi = (Console.ReadLine()).ToLower();
-                                        Console.Write("Syötä sukunimesi: ");
+                                        Console.Write("Syötä uuden työntekijän sukunimi: ");
                                         string pieni_sukunimi = (Console.ReadLine()).ToLower();
                                         string etunimi = Char.ToUpper(pieni_etunimi[0]) + pieni_etunimi.Substring(1);
                                         string sukunimi = Char.ToUpper(pieni_sukunimi[0]) + pieni_sukunimi.Substring(1);
                                         string kauttajatunnus = sukunimi + etunimi;
-                                        Console.WriteLine(kauttajatunnus);
+                                        Console.WriteLine("Uusi käyttäjä nimi: " + kauttajatunnus);
                                         Console.WriteLine("Syötä salasanasi: ");
                                         string KayttajaSalasana = Console.ReadLine();
                                         //Lisää työntekijän syntymäaika
-                                        Console.Write("Syötä syntymäaikasi (PP.KK.VVVV): ");
+                                        Console.Write("Syötä uuden työntekijän syntymäaika (PP.KK.VVVV): ");
                                         string[] syntymaAika = (Console.ReadLine()).Split('.');
                                         if (syntymaAika[1].Length == 1)
                                         {
@@ -257,7 +321,10 @@ namespace TuntiLaskin
                                         {
                                             syntymaAika[0] = "0" + syntymaAika[0];
                                         }
-                                        TyoLista[h, 4] = syntymaAika[2] + "-" + syntymaAika[1] + "-" + syntymaAika[0];
+                                        Console.Write("Anna uuden työntekijän bruttopalkka tunnilta: ");
+                                        string UudenTyöntekijänBrutto = Console.ReadLine();
+                                        Console.Write("Anna uuden työntekijän veroprosentti: ");
+                                        string UudenyöntekijänVeroProsentti = Console.ReadLine();
                                         int i;
                                         for (i = 0; i < TyoLista.GetLength(0); i++)
                                         {
@@ -268,31 +335,37 @@ namespace TuntiLaskin
                                         }
                                         TyoLista[i, 0] = kauttajatunnus;
                                         TyoLista[i, 1] = KayttajaSalasana;
-                                        //Console.WriteLine(i + "nimi" + TyoLista[i, 0] + "salasana" + TyoLista[i, 1]);
+                                        TyoLista[i, 2] = "0";
+                                        TyoLista[i, 3] = UudenTyöntekijänBrutto;
+                                        TyoLista[i, 4] = syntymaAika[2] + "-" + syntymaAika[1] + "-" + syntymaAika[0];
+                                        TyoLista[i, 5] = UudenyöntekijänVeroProsentti;
+                                        Console.Write("Uusi työntekijä on luotu käyttäjänimellä: " + TyoLista[i, 0]);
+                                        Console.WriteLine("\nPaina enter jatkaaksesi");
+                                        Console.ReadLine();
+                                        Console.Clear();
                                     }
-                                    else if (Valinta == 4)
+                                    else if(Valinta == 3)
                                     {
                                         Salasana = SalasananSuojaus();
-                                        if (Salasana == TyoLista[3, 1])
+                                        if (Salasana == TyoLista[0, 1])
                                         {
+                                            string uusiSalasana;
                                             SalasananVaihto SalasanaTyyppi = new SalasananVaihto();
                                             uusiSalasana = SalasanaTyyppi.SalasanaVaihdetaan();
 
-                                            TyoLista[3, 1] = null;
-                                            TyoLista[3, 1] = uusiSalasana;
-                                            Salasana = TyoLista[3, 1];
+                                            TyoLista[0, 1] = null;
+                                            TyoLista[0, 1] = uusiSalasana;
+                                            Salasana = TyoLista[0, 1];
                                         }
                                         else
                                         {
                                             Console.WriteLine("Väärä salasana.");
                                             Console.WriteLine();
                                         }
-                                       
                                     }
                                     else if (Valinta == 0)
                                     {
-                                        Salasana = null;
-                                                                                int f;
+                                        int f;
                                         for (f = 0; f < TyoLista.GetLength(0); f++)
                                         {
                                             if (TyoLista[f, 0] == null)
@@ -309,10 +382,11 @@ namespace TuntiLaskin
                                                 break;
                                             }
                                         }
+                                        int p;
                                         int s = q - 1;
                                         using (var sw = new StreamWriter(@"TyonTekijaLista.txt"))
                                         {
-                                            for (int p = 0; p < f; p++)
+                                            for (p = 0; p < f; p++)
                                             {
                                                 for (int k = 0; k < q; k++)
                                                 {
@@ -327,12 +401,13 @@ namespace TuntiLaskin
                                             sw.Flush();
                                             sw.Close();
                                         }
-                                        //paluu käyttäjän valintaan
+                                        Salasana = null;
+                                        Console.Clear();
                                         break;
                                     }
                                     else
                                     {
-                                        Console.WriteLine("Anna luku väliltä 0-4");
+                                        Console.WriteLine("Anna luku väliltä 0-2");
                                     }
                                 }
                             }
@@ -344,7 +419,6 @@ namespace TuntiLaskin
                         }
                         break;
                     }
-
                     else if (Kayttaja == TyoLista[h, 0])
                     {
                         string Salasana = SalasananSuojaus();
@@ -361,15 +435,12 @@ namespace TuntiLaskin
                             string paivaNytString = paivaNyt.ToString("yyyy-MM-dd").Remove(4, 1);
                             paivaNytString = paivaNytString.Remove(6, 1);
                             int paivaNytInt = Convert.ToInt32(paivaNytString);
-                            Console.WriteLine(paivaNytString);
 
                             syntymaPaivaString = syntymaPaivaString.Remove(4, 1);
                             syntymaPaivaString = syntymaPaivaString.Remove(6, 1);
-                            Console.WriteLine(syntymaPaivaString);
                             int syntymapaivaInt = Convert.ToInt32(syntymaPaivaString);
                             var kauttajaIkaString = Convert.ToString(paivaNytInt - syntymapaivaInt).Remove(2);
                             int kauttajaIka = Convert.ToInt16(kauttajaIkaString);
-                            Console.WriteLine(kauttajaIka);
 
                             double kauttajaTyoElakeProsentti = 0;
 
@@ -381,15 +452,14 @@ namespace TuntiLaskin
                             {
                                 kauttajaTyoElakeProsentti = 0.017;
                             }
-
                             Console.WriteLine("Hei " + Kayttaja + "!");
                             while (true)
                             {
                                 //työntekijän valikko
                                 Console.WriteLine("Paina 1 Lisätäksesi tunteja");
-                                Console.WriteLine("Paina 2 tarkastella tietojasi");
-                                Console.WriteLine("Paina 3 muuttaaksesi salasanasi");
-                                Console.WriteLine("Paina 0 kirjautuaksesi ulos");
+                                Console.WriteLine("Paina 2 tarkastellaksesi tietojasi");
+                                Console.WriteLine("Paina 3 vaihtaaksesi salasanasi");
+                                Console.WriteLine("Paina 0 kirjautuaksesi ulos ja tallentaaksesi tiedot");
                                 string valinta = Console.ReadLine();//käyttäjän valinta
                                 //Yritetään muuttaa numeroksi
                                 if (int.TryParse(valinta, out Valinta))
@@ -401,17 +471,27 @@ namespace TuntiLaskin
                                         //Palauttaa luuppiin jos tyotunnitOikein = true
                                         while (tyotunnitOikein == true)
                                         {
-                                            Console.Write("Syötä päivän työtuntisi: ");
+                                            Console.WriteLine("Syötä päivän työtuntisi\nSyöttämällä 0, palaat päävalikkoon");
                                             string tyotunnit = Console.ReadLine();
+                                            if (tyotunnit == "0")
+                                            {
+                                                tyotunnitOikein = false;
+                                                break;
+                                            }
                                             double tyotunnitDouble;
 
                                             //yrittää muuntaa doubleksi
                                             if (double.TryParse(tyotunnit, out tyotunnitDouble))
                                             {
-                                                Console.Write("Vahvista tuntimäärä " + tyotunnit + " kirjoittamalla se uudestaan: ");
+                                                Console.WriteLine("Vahvista tuntimäärä " + tyotunnit + " kirjoittamalla se uudestaan\nSyöttämällä \"0\", palaat päävalikkoon");
                                                 double tyotunnitTarkastus;
                                                 //muuntaa syötettävän takistusluvun doubleksi vertailua varten
                                                 double.TryParse(Console.ReadLine(), out tyotunnitTarkastus);
+                                                if (tyotunnitTarkastus == 0)
+                                                {
+                                                    tyotunnitOikein = false;
+                                                    break;
+                                                }
                                                 //jos tarkistus on väärin, käyttäjä palaa ylemmän tason while-luuppiin ja kirjaa tunnit uudelleen
                                                 if (tyotunnitDouble != tyotunnitTarkastus)
                                                 {
@@ -425,9 +505,11 @@ namespace TuntiLaskin
                                                     tyotunnitSumma = tyotunnitDouble + tyotunnitSumma;
                                                     //Muuttaa lasketun summan stringiksi, listaan säilyttämistä varten, Tallentaa listaan.
                                                     TyoLista[h, 2] = Convert.ToString(tyotunnitSumma);
-                                                    Console.WriteLine("Työtuntiesi asettaminen onnistui!");
+                                                    Console.WriteLine("Työtuntiesi asettaminen onnistui!\nPaina Enter jatkaaksesi");
+                                                    Console.ReadKey();
                                                     tyotunnitOikein = false;
                                                 }
+                                                Console.Clear();
                                             }
                                             else
                                             {
@@ -441,14 +523,14 @@ namespace TuntiLaskin
                                         var tuntipalkka = TyoLista[h, 3];
                                         var veroprosentti = TyoLista[h, 5];
                                         var tehdytTunnit = TyoLista[h, 2];
-
-
-                                        //omien tietojen tarkastelu
-                                        //pitää etsiä lista ja printtaa se ulos
-                                        Console.WriteLine("Käyttäjän tiedot.");
+                                        var ika = TyoLista[h, 4];
+                                        //var bruttopalkka = TyoLista[i, 6];   ??
                                         Console.WriteLine("---------------------------");
                                         Console.Write("Käyttäjän nimi: ");
-                                        Console.Write(Kayttaja);
+                                        Console.Write(TyoLista[h, 0]);
+                                        Console.WriteLine();
+                                        Console.Write("Syntymäaikasi: ");
+                                        Console.Write(TyoLista[h, 4]);
                                         Console.WriteLine();
                                         Console.Write("Tuntipalkka: ");
                                         Console.Write(tuntipalkka + "e");
@@ -456,9 +538,14 @@ namespace TuntiLaskin
                                         Console.Write("Veroprosentti: ");
                                         Console.Write(veroprosentti + "%");
                                         Console.WriteLine();
+                                        Console.Write("Työeläkekerroin: " + kauttajaTyoElakeProsentti);
+                                        Console.WriteLine();
                                         Console.Write("Tehdyt tunnit: ");
                                         Console.WriteLine(tehdytTunnit + "h");
+                                        Console.WriteLine("Seuraava palkkapäivä: " + DateTime.DaysInMonth(AikaNyt.Year, AikaNyt.Month) + "." + AikaNyt.Month + "." + AikaNyt.Year);
                                         Console.WriteLine("---------------------------");
+                                        //Console.Write("Bruttopalkka: ");
+                                        //Console.WriteLine(bruttopalkka + "e");
                                     }
                                     else if (Valinta == 3)
                                     {
@@ -467,12 +554,15 @@ namespace TuntiLaskin
 
                                         if (Salasana == AnnettuSalasana)
                                         {
+                                            string uusiSalasana;
                                             SalasananVaihto SalasanaTyyppi = new SalasananVaihto();
                                             uusiSalasana = SalasanaTyyppi.SalasanaVaihdetaan();
 
                                             TyoLista[h, 1] = null;
                                             TyoLista[h, 1] = uusiSalasana;
                                             Salasana = TyoLista[h, 1];
+                                            Console.Clear();
+
                                         }
                                         else
                                         {
@@ -482,8 +572,7 @@ namespace TuntiLaskin
                                     else if (Valinta == 0)
                                     {
                                         //paluu käyttäjän valintaan
-                                        Salasana = null;
-                                                                                int f;
+                                        int f;
                                         for (f = 0; f < TyoLista.GetLength(0); f++)
                                         {
                                             if (TyoLista[f, 0] == null)
@@ -515,9 +604,12 @@ namespace TuntiLaskin
                                                 }
                                                 sw.Write("\n");
                                             }
+
                                             sw.Flush();
                                             sw.Close();
                                         }
+                                        Salasana = null;
+                                        Console.Clear();
                                         break;
                                     }
                                 }
@@ -526,7 +618,7 @@ namespace TuntiLaskin
                                     Console.WriteLine("Anna luku väliltä 0 - 2");
                                 }
                             }
-                        }
+                        }  
                         else
                         {
                             Console.WriteLine("Väärä salasana");
