@@ -1,4 +1,0 @@
-Admin.Password
-Pekka.Vittu.8.12.68.18.10
-Matti.Joo.10.15.52.26.11
-Maija.Jep.25.14.38.12.13
