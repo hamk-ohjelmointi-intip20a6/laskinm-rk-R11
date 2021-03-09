@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -306,6 +306,8 @@ namespace TuntiLaskin
                                                     }
                                                 }
                                                 else if (TyontekijanTarkastus == "0") { break; }
+                                                else
+                                                    Console.WriteLine("Käyttäjää ei löydy");
                                             }
                                             break;
                                         }
