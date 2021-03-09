@@ -244,6 +244,7 @@ namespace TuntiLaskin
                                                         Console.WriteLine("Paina 3 muokataksesi bruttopalkkaa");
                                                         Console.WriteLine("Paina 4 muokataksesi veroprosenttia");
                                                         Console.WriteLine("Paina 5 muokataksesi salasanaa");
+                                                        Console.WriteLine("Paina 6 poistaaksesi käyttäjän");
                                                         Console.WriteLine("Paina 0 palataksesi\n");
                                                         string tyonTekijanMuokkaus = Console.ReadLine();
                                                         if (int.TryParse(tyonTekijanMuokkaus, out int TyonTekijanMuokkaus))
@@ -283,6 +284,18 @@ namespace TuntiLaskin
                                                                 TyoLista[i, 1] = Uusisalasana;
                                                                 Console.Clear();
                                                             }
+                                                            else if (TyonTekijanMuokkaus == 6)
+                                                            {
+                                                                Console.WriteLine("Oletko varma?\nTätä muutosta ei voi perua tämän jälkeen\nKirjoita \"Kyllä\" poitaaksesi");
+                                                                string PoistoValintaKylla = Console.ReadLine();
+                                                                if (PoistoValintaKylla == "Kyllä" || PoistoValintaKylla == "kyllä")
+                                                                {
+                                                                    for (int s = 0; s < 7; s++)
+                                                                    {
+                                                                        TyoLista[i, s] = null;
+                                                                    }
+                                                                }
+                                                            }
                                                             else if (TyonTekijanMuokkaus == 0)
                                                             {
                                                                 Console.Clear();
@@ -307,7 +320,7 @@ namespace TuntiLaskin
                                         string etunimi = Char.ToUpper(pieni_etunimi[0]) + pieni_etunimi.Substring(1);
                                         string sukunimi = Char.ToUpper(pieni_sukunimi[0]) + pieni_sukunimi.Substring(1);
                                         string kauttajatunnus = sukunimi + etunimi;
-                                        Console.WriteLine("Uusi käyttäjä nimi: " + kauttajatunnus);
+                                        Console.WriteLine("Uusi käyttäjänimi: " + kauttajatunnus);
                                         Console.WriteLine("Syötä salasanasi: ");
                                         string KayttajaSalasana = Console.ReadLine();
                                         //Lisää työntekijän syntymäaika
